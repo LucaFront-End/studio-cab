@@ -7,7 +7,7 @@ import WhyUs from '../components/home/WhyUs';
 import Process from '../components/home/Process';
 import Furniture from '../components/home/Furniture';
 import CtaSection from '../components/home/CtaSection';
-import Zones from '../components/home/Zones';
+import ContactForm from '../components/home/ContactForm';
 
 export default function Home() {
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Home() {
       <Process />
       <Furniture />
       <CtaSection />
-      <Zones />
+      <ContactForm />
     </motion.main>
   );
 }

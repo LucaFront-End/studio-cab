@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════════
+   STUDIO GRUPO CAB — Process Timeline Styles (Split-Scroll)
+   ═══════════════════════════════════════════════════════════ */
+
+.process {
+  background-color: var(--color-dark-bg);
+  position: relative;
+  overflow: visible !important; /* Cambiado a visible para evitar romper position: sticky en navegadores */
+  padding: 80px 0 120px 0;
+}
+
+/* ── Split Layout ── */
+.process__split-container {
+  display: grid;
+  grid-template-columns: 38% 58%;
+  gap: 4%;
+  align-items: stretch; /* Estira la columna izquierda a la altura total del lado derecho */
+  position: relative;
+  z-index: 2;
+  margin-top: var(--space-2xl);
+}
+
+/* ── Left Column: Technical Dial ── */
+.process__left-pane {
+  border-right: 1px dashed rgba(232, 229, 223, 0.06);
+  padding-right: var(--space-xl);
+  position: relative;
+}
+
+/* Wrapper sticky que mantiene el dial flotando */
+.process__sticky-wrapper {
+  position: sticky;
+  top: 180px; /* Centrado vertical aproximado en el viewport */
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Dial container */
+.process__dial-container {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+/* Rotating SVG element */
+.process__dial {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--color-champagne);
+  pointer-events: none;
+}
+
+/* Dial Center content */
+.process__dial-center {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process__dial-num {
+  font-family: var(--font-display-alt);
+  font-size: 2.5rem;
+  font-weight: 100;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Phase display details */
+.process__phase-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 10px;
+}
+
+.process__phase-label {
+  font-family: var(--font-display-alt);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.process__phase-title {
+  font-family: var(--font-display-alt);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  margin: 0 0 4px 0;
+  font-weight: var(--weight-medium);
+}
+
+.process__phase-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: var(--weight-medium);
+  color: #FFFFFF;
+  transition: all 0.4s var(--ease-expo);
+}
+
+/* ── Right Column: Scrollable Steps List ── */
+.process__right-pane {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.process__steps-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Step Card Item */
+.process-card-item {
+  position: relative;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(18, 18, 17, 0.4);
+  opacity: 0.2; /* Dimmed state by default */
+  transform: scale(0.97);
+  transition: opacity 0.6s var(--ease-expo), background-color 0.6s, border-color 0.6s, transform 0.6s var(--ease-expo), box-shadow 0.6s;
+  margin-bottom: 90px; /* Large space between steps to make scroll activation clear */
+  overflow: hidden;
+}
+
+.process-card-item:last-child {
+  margin-bottom: 40px; /* Allow scrolling room for the last item */
+}
+
+/* Active spotlight card styles */
+.process-card-item--active {
+  opacity: 1; /* Spotlight on active */
+  transform: scale(1);
+  background: rgba(18, 18, 17, 0.95);
+  border-color: rgba(212, 195, 179, 0.25);
+  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.5);
+}
+
+.process-card-item__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.process-card-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.process-card-item__num {
+  font-family: var(--font-display-alt);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+  transition: color 0.4s var(--ease-expo);
+}
+
+.process-card-item--active .process-card-item__num {
+  color: var(--color-champagne);
+}
+
+.process-card-item__icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.5s var(--ease-expo);
+}
+
+.process-card-item--active .process-card-item__icon-box {
+  background: var(--color-wood-nogal);
+  border-color: var(--color-wood-light);
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(75, 54, 33, 0.3);
+}
+
+.process-card-item__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--weight-light);
+  color: var(--text-secondary);
+  margin: 0;
+  transition: color 0.4s var(--ease-expo), font-weight 0.4s;
+}
+
+.process-card-item--active .process-card-item__title {
+  color: #FFFFFF;
+  font-weight: var(--weight-medium);
+}
+
+.process-card-item__desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.4s var(--ease-expo);
+}
+
+.process-card-item--active .process-card-item__desc {
+  color: var(--text-secondary);
+}
+
+/* Trace line drawing effect on active */
+.process-card-item__active-border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--color-champagne);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.process-card-item--active .process-card-item__active-border {
+  transform: scaleY(1);
+}
+
+/* ── Responsive grids ── */
+@media (max-width: 1200px) {
+  .process__split-container {
+    grid-template-columns: 42% 54%;
+  }
+
+  .process__dial-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .process {
+    padding: 60px 0 80px 0;
+  }
+
+  .process__split-container {
+    grid-template-columns: 100%;
+    gap: 0;
+  }
+
+  /* Hide sticky column on tablet/mobile */
+  .process__left-pane {
+    display: none;
+  }
+
+  .process-card-item {
+    opacity: 1 !important; /* Force lit state on mobile list */
+    transform: scale(1) !important;
+    background: rgba(18, 18, 17, 0.7);
+    margin-bottom: 24px;
+    padding: var(--space-xl);
+  }
+
+  .process-card-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .process-card-item__num {
+    color: var(--color-champagne);
+  }
+
+  .process-card-item__icon-box {
+    background: var(--color-wood-nogal);
+    border-color: var(--color-wood-light);
+    color: #FFFFFF;
+  }
+
+  .process-card-item__title {
+    color: #FFFFFF;
+    font-weight: var(--weight-medium);
+  }
+
+  .process-card-item__desc {
+    color: var(--text-secondary);
+  }
+
+  .process-card-item__active-border {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .process-card-item {
+    padding: var(--space-lg);
+  }
+
+  .process-card-item__title {
+    font-size: 1.15rem;
+  }
+}

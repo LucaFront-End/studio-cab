@@ -1,0 +1,303 @@
+/* ═══════════════════════════════════════════════════════════
+   STUDIO GRUPO CAB — Navbar Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+  padding: 25px 0;
+  background: transparent;
+  transition: padding var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  border-bottom: 1px solid transparent;
+}
+
+.navbar--scrolled {
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(232, 229, 223, 0.06);
+  padding: 15px 0;
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+
+/* ── Logo ── */
+.navbar__logo {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.navbar__logo-grupo {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.55em;
+  color: var(--color-champagne);
+  margin-bottom: 2px;
+}
+
+.navbar__logo-cab {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+}
+
+.navbar__logo-studio {
+  font-family: var(--font-display);
+  font-size: 0.45rem;
+  font-weight: var(--weight-light);
+  letter-spacing: 0.45em;
+  color: var(--color-steel);
+  margin-top: 3px;
+}
+
+/* ── Desktop Links ── */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  height: 100%;
+}
+
+.navbar__link-wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__link {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 15px 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.navbar__link:hover {
+  color: var(--text-primary);
+}
+
+.navbar__link--active {
+  color: var(--text-primary);
+}
+
+/* Underline Slider */
+.navbar__link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background: var(--color-champagne);
+  border-radius: 1px;
+}
+
+/* ── Dropdown ── */
+.navbar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background: rgba(18, 18, 17, 0.96);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 195, 179, 0.12);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  min-width: 280px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  z-index: var(--z-dropdown);
+}
+
+.navbar__dropdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.navbar__dropdown-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.navbar__dropdown-link:hover {
+  color: var(--text-primary);
+  background: rgba(212, 195, 179, 0.05);
+}
+
+.navbar__dropdown-arrow {
+  opacity: 0.3;
+  transform: translate(-3px, 3px);
+  transition: all var(--transition-fast);
+}
+
+.navbar__dropdown-link:hover .navbar__dropdown-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+  color: var(--color-champagne);
+}
+
+/* ── CTA Container ── */
+.navbar__cta-desktop {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__cta {
+  padding: 10px 24px;
+  font-size: 0.68rem;
+  border-color: rgba(212, 195, 179, 0.3);
+}
+
+/* ── Hamburger Trigger ── */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  gap: 6px;
+  cursor: pointer;
+  z-index: calc(var(--z-modal) + 1);
+  background: transparent;
+  border: none;
+}
+
+.navbar__hamburger-line {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--text-primary);
+  transition: transform 0.6s var(--ease-expo), opacity 0.6s var(--ease-expo);
+}
+
+.navbar__hamburger--open .navbar__hamburger-line-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger--open .navbar__hamburger-line-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger--open .navbar__hamburger-line-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Fullscreen Mobile Menu ── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mobile-menu__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-dark-bg);
+  border-bottom: 1px solid rgba(212, 195, 179, 0.1);
+  padding: 120px 40px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-menu__link {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  font-weight: var(--weight-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  display: inline-block;
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link--active {
+  color: var(--color-champagne);
+}
+
+.mobile-menu__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mobile-menu__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid rgba(212, 195, 179, 0.08);
+  padding-top: 20px;
+}
+
+.mobile-menu__info-location {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.mobile-menu__info-mail {
+  font-size: 0.75rem;
+  color: var(--color-champagne);
+  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 1024px) {
+  .navbar__links,
+  .navbar__cta-desktop {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+}

@@ -1,0 +1,256 @@
+/* ═══════════════════════════════════════════════════════════
+   STUDIO GRUPO CAB — Furniture Section Styles (Two-Row Marquee)
+   ═══════════════════════════════════════════════════════════ */
+
+.furniture {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 120px 0;
+}
+
+/* ── Carousel Viewport Container ── */
+.furniture__carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-xl) 0;
+  margin: var(--space-2xl) 0;
+}
+
+/* ── Blur overlays on the sides ── */
+.furniture__blur-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Left side blur: Fades the light background to transparent, applying backdrop blur */
+.furniture__blur-overlay--left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary) 20%, rgba(247, 245, 240, 0) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to right, black 15%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 15%, transparent 100%);
+}
+
+/* Right side blur: Fades the light background to transparent from the right, applying backdrop blur */
+.furniture__blur-overlay--right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary) 20%, rgba(247, 245, 240, 0) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to left, black 15%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, black 15%, transparent 100%);
+}
+
+/* ── Marquee Rows Layout ── */
+.furniture__marquee-wrapper {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.furniture__marquee-wrapper.mt-lg {
+  margin-top: 30px;
+}
+
+.furniture__marquee-row {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  padding: 10px 0;
+}
+
+/* Animations for left and right scrolling */
+.furniture__marquee-row--left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.furniture__marquee-row--right {
+  animation: marquee-right 40s linear infinite;
+}
+
+/* Pause the animation smoothly on hover */
+.furniture__marquee-row:hover {
+  animation-play-state: paused;
+}
+
+/* Keyframes: Left Translate (0 to -50%) */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keyframes: Right Translate (-50% to 0) */
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ── Furniture Item Card ── */
+.furniture__item {
+  flex-shrink: 0;
+  width: 310px;
+  transform-style: preserve-3d;
+}
+
+.furniture__item-image-box {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background-color: #121211;
+  border: 1px solid rgba(18, 18, 17, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.furniture__item:hover .furniture__item-image-box {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.furniture__item-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-expo);
+  filter: grayscale(12%) contrast(98%);
+}
+
+.furniture__item:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) contrast(100%);
+}
+
+.furniture__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-xl);
+  transition: background-color var(--transition-base);
+  z-index: 2;
+}
+
+.furniture__item:hover .furniture__item-overlay {
+  background-color: rgba(75, 54, 33, 0.15);
+}
+
+.furniture__item-subtitle {
+  font-family: var(--font-display-alt);
+  font-size: 0.6rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  margin-bottom: 6px;
+}
+
+.furniture__item-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: var(--weight-light);
+  color: #FFFFFF;
+  margin-bottom: var(--space-md);
+  line-height: 1.3;
+}
+
+.furniture__item-cta {
+  font-family: var(--font-display-alt);
+  font-size: 0.65rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.furniture__item:hover .furniture__item-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Bottom Call To Action ── */
+.furniture__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xl);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid rgba(18, 18, 17, 0.06);
+}
+
+.furniture__note {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-weight: var(--weight-light);
+}
+
+.btn-premium-accent {
+  background: var(--color-wood-nogal);
+  color: #FFFFFF;
+  border: 1px solid var(--color-wood-light);
+}
+
+.btn-premium-accent:hover {
+  background: var(--color-dark-bg);
+  border-color: var(--color-champagne);
+  color: var(--color-champagne);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Responsive adjustments ── */
+@media (max-width: 1024px) {
+  .furniture__blur-overlay {
+    width: 120px; /* Narrower blur on mobile/tablet viewports */
+  }
+}
+
+@media (max-width: 768px) {
+  .furniture {
+    padding: 60px 0 80px 0;
+  }
+  
+  .furniture__blur-overlay {
+    width: 80px; /* Minimal overlay to preserve viewing space */
+  }
+
+  .furniture__item {
+    width: 260px;
+  }
+
+  .furniture__bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .furniture__item-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

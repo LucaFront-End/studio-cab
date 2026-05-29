@@ -1,0 +1,378 @@
+/* ═══════════════════════════════════════════════════════════
+   STUDIO GRUPO CAB — CTA Section Overhaul Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.cta-section {
+  position: relative;
+  padding: 120px 0 140px 0;
+  overflow: hidden;
+  background-color: var(--color-dark-bg);
+}
+
+/* ── Parallax Background ── */
+.cta-section__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 130%; /* Taller height for smooth parallax shift */
+  top: -15%;
+}
+
+.cta-section__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.14; /* Muted opacity to keep text highly readable */
+  filter: grayscale(40%) contrast(105%);
+}
+
+.cta-section__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.98) 0%,
+    rgba(18, 18, 17, 0.94) 50%,
+    rgba(10, 10, 10, 0.98) 100%
+  );
+  z-index: 1;
+}
+
+.cta-section__noise {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ── Interactive Spotlight (Mouse Follower) ── */
+.cta-section__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity 0.5s ease;
+}
+
+.cta-section__container {
+  position: relative;
+  z-index: 4;
+}
+
+/* ── Split Layout ── */
+.cta-section__split {
+  display: grid;
+  grid-template-columns: 53% 42%;
+  gap: 5%;
+  align-items: center;
+}
+
+/* ── Left Column: Trust & Credentials ── */
+.cta-section__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cta-section__label {
+  margin-bottom: var(--space-md);
+}
+
+.cta-section__title {
+  font-family: var(--font-display-alt);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: #FFFFFF;
+  font-weight: 200;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-lg);
+}
+
+.cta-section__desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-2xl);
+  font-weight: var(--weight-light);
+}
+
+/* B2B Trust Grid */
+.cta-section__trust-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.cta-section__trust-item {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.cta-section__trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: rgba(212, 195, 179, 0.04);
+  border: 1px solid rgba(232, 229, 223, 0.08);
+  color: var(--color-champagne);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cta-section__trust-info h4 {
+  font-family: var(--font-display-alt);
+  font-size: 0.95rem;
+  font-weight: var(--weight-medium);
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.02em;
+}
+
+.cta-section__trust-info p {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Right Column: Glassmorphic Contact Card ── */
+.cta-section__right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.cta-section__card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(18, 18, 17, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(232, 229, 223, 0.07);
+  border-radius: var(--radius-md);
+  padding: var(--space-2xl);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  position: relative;
+}
+
+.cta-section__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(232, 229, 223, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cta-section__card-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--weight-light);
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+}
+
+.cta-section__card-header p {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Contact Links Stack */
+.cta-section__card-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cta-section__card-link-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(232, 229, 223, 0.04);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.cta-section__card-link-item:hover {
+  background: rgba(212, 195, 179, 0.05);
+  border-color: rgba(212, 195, 179, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cta-section__link-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+/* Distinct subtle colors for contact icon backgrounds */
+.whatsapp-box {
+  background: rgba(37, 211, 102, 0.06);
+  border: 1px solid rgba(37, 211, 102, 0.15);
+  color: #25D366;
+}
+
+.cta-section__card-link-item:hover .whatsapp-box {
+  background: #25D366;
+  color: #0A0A0A;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+}
+
+.email-box {
+  background: rgba(212, 195, 179, 0.06);
+  border: 1px solid rgba(212, 195, 179, 0.15);
+  color: var(--color-champagne);
+}
+
+.cta-section__card-link-item:hover .email-box {
+  background: var(--color-champagne);
+  color: #0A0A0A;
+  box-shadow: 0 0 15px rgba(212, 195, 179, 0.3);
+}
+
+.phone-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.cta-section__card-link-item:hover .phone-box {
+  background: #FFFFFF;
+  color: #0A0A0A;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.cta-section__link-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.cta-section__link-label {
+  font-family: var(--font-display-alt);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  transition: color var(--transition-base);
+}
+
+.cta-section__card-link-item:hover .cta-section__link-label {
+  color: var(--color-champagne);
+}
+
+.cta-section__link-val {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: #FFFFFF;
+  font-weight: var(--weight-light);
+}
+
+.cta-section__link-arrow {
+  color: var(--text-muted);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.cta-section__card-link-item:hover .cta-section__link-arrow {
+  transform: translateX(4px);
+  color: #FFFFFF;
+}
+
+/* Card Footer status */
+.cta-section__card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  padding-top: var(--space-xs);
+  border-top: 1px solid rgba(232, 229, 223, 0.05);
+}
+
+.cta-section__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981; /* Glowing emerald dot */
+  box-shadow: 0 0 8px #10B981;
+  animation: pulse-dot 2.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* ── Responsive adjustments ── */
+@media (max-width: 992px) {
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-section__split {
+    grid-template-columns: 100%;
+    gap: var(--space-3xl);
+  }
+
+  .cta-section__left {
+    text-align: center;
+    align-items: center;
+  }
+
+  .cta-section__title {
+    text-align: center;
+  }
+
+  .cta-section__desc {
+    text-align: center;
+  }
+
+  .cta-section__right {
+    justify-content: center;
+  }
+
+  .cta-section__card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section__card {
+    padding: var(--space-xl);
+  }
+}
